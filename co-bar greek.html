@@ -70,6 +70,7 @@
         padding-right: 10px;
         font-size: 18px;
         font-weight: 600;
+        cursor: pointer;
     }
     .first-cell > .text{
         display: flex;
@@ -125,7 +126,7 @@
 <div class="bar-design container">
     <div class="first-cell">
         <div class="check-boxes">
-            <div class="title">Cookies</div>
+            <div class="title" id="bar-header">Cookies</div>
             <div class="check-boxes-cell"><span id="nes">Αναγκαία</span><input id="nes-input" type="checkbox" checked disabled></div>
             <div class="check-boxes-cell"><span id="pref">Προτιμήσεις</span><input id="pref-input" type="checkbox"></div>
             <div class="check-boxes-cell"><span id="stat">Στατιστικά</span><input id="stat-input" type="checkbox"></div>
@@ -145,8 +146,12 @@
     var pref = "Επιτρέπουν στον ιστότοπο να «θυμάται» τις επιλογές του χρήστη. Χρησιμοποιούνται κατά την περιήγηση σας, ώστε να μπορούμε να σας προτείνουμε τα κατάλληλα προϊόντα και το απαραίτητο περιεχόμενο με βάση τις ανάγκες σας.";
     var stat = "Μας δίνουν τη δυνατότητα να αξιολογούμε την αποτελεσματικότητα των διάφορων λειτουργιών του site μας, ώστε να βελτιώνουμε συνεχώς την εμπειρία που σας προσφέρουμε. Συλλέγουν συγκεντρωτικές, ανώνυμες πληροφορίες που δεν ταυτοποιούν κάποιον επισκέπτη, για παράδειγμα, ποιες σελίδες επισκέπτονται συχνότερα οι χρήστες.";
     var mark = "Χρησιμοποιούνται για την παροχή περιεχομένου που ταιριάζει περισσότερο στα ενδιαφέροντά σας, καθώς και για την αποστολή στοχευμένης διαφήμισης, με στόχο τον περιορισμό των ανούσιων διαφημιστικών μηνυμάτων.";
+    var header = "Χρησιμοποιούμε cookies, για να σας εξασφαλίσουμε μία κορυφαία και απροβλημάτιστη εμπειρία περιήγησης. Επιλέξτε «Αποδοχή όλων» εάν συμφωνείτε με τη χρήση όλων των επιπρόσθετων Cookies. Εναλλακτικά επιλέξτε αυτά που επιθυμείτε και πατήστε «Αποδοχή επιλογών».";
 
-     /* New Text */
+    /* New Text */
+    $("#bar-header").click( function(){
+        $("#info").text(header);
+    });
     $("#nes").click( function(){
         $("#info").text(nes); /* Gives new value to the info text */
     });
