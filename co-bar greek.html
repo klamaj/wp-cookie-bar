@@ -1,0 +1,210 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<style>
+    *{
+        font-family: Manrope;
+    }
+    /* body{
+        margin: 0;
+        padding: 0;
+    } */
+    .bar-design{
+        display: grid;
+        position: absolute;
+        justify-content: center;
+        grid-template-rows: max-content;
+        grid-template-columns: minmax(min-content,80%) max-content;
+        width: 100%;
+        background-color: #000;
+        padding: 16px 0px 16px 0px;
+    }
+    .first-cell{
+        display: inline-grid;
+        grid-row: 1;
+        grid-column: 1;
+        grid-template-rows: max-content max-content;
+        grid-template-columns:100%;
+        align-items: end;
+        box-sizing: border-box;
+    }
+    .second-cell{
+        display: inline-grid;
+        grid-row: 1;
+        grid-column: 2;
+        grid-template-rows: max-content max-content;
+        grid-template-columns: max-content;
+    }
+    .check-boxes{
+        display: inline-grid;
+        grid-row: 1;
+        grid-column: 1;
+        grid-template-rows: max-content;
+        grid-template-columns: repeat(5, max-content); /* or 1fr */
+        align-items: end;
+        color: #f8f8f8;
+        width: max-content;
+    }
+    .check-boxes-cell{
+        display: inline-grid;
+        grid-template-rows: max-content;
+        grid-template-columns: max-content max-content;
+        align-items: center;
+        flex-direction: row;
+        grid-row: 1;
+        grid-column: auto;
+        cursor: pointer;
+        padding-left: 15px;
+    }
+    .check-boxes-cell:hover{
+        color: #ff9800;
+    }
+    .title{
+        grid-row: 1;
+        grid-column: 1;
+        align-items: end;
+        padding-right: 10px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .first-cell > .text{
+        display: flex;
+        grid-row: 2;
+        grid-column: 1;
+        width: inherit;
+        text-align: justify;
+        font-size: 15px;
+        color: #f8f8f8;
+        padding-right: 100px;
+    }
+    .btns{
+        display: inline-grid;
+        grid-template-rows: max-content max-content;
+        grid-template-columns: max-content;
+        grid-row: 1;
+        grid-column: 2;
+        align-self: center;
+        row-gap: 10px;
+    }
+    .btn{
+        grid-row: auto;
+        grid-column: 1;
+        height: 40px;
+        width: 100%;
+        padding: 0px 24px 0px 24px;
+        border: none;
+        border-radius: 99px;
+        font-size: 14.4px;
+    }
+    .btn:hover{
+        cursor: pointer;
+        background-color: #ff9800;
+    }  
+    .x-btn{
+        position: absolute;
+        background-color: transparent;
+        border: none;
+        right: 16px;
+        top:16px;
+        float: right;
+        padding: 0;
+        color: rgb(73, 73, 73);
+        font-size: 25px;
+        font-weight: 600;
+    }
+    .x-btn:hover{
+        cursor: pointer;
+        color: #f8f8f8;
+    }
+</style>
+
+<div class="bar-design container">
+    <div class="first-cell">
+        <div class="check-boxes">
+            <div class="title">Cookies</div>
+            <div class="check-boxes-cell"><span id="nes">Αναγκαία</span><input id="nes-input" type="checkbox" checked disabled></div>
+            <div class="check-boxes-cell"><span id="pref">Προτιμήσεις</span><input id="pref-input" type="checkbox"></div>
+            <div class="check-boxes-cell"><span id="stat">Στατιστικά</span><input id="stat-input" type="checkbox"></div>
+            <div class="check-boxes-cell"><span id="mark">Προώθησης</span><input id="mark-input" type="checkbox"></div>
+        </div>
+        <p class="text" id="info">Χρησιμοποιούμε cookies, για να σας εξασφαλίσουμε μία κορυφαία και απροβλημάτιστη εμπειρία περιήγησης. Επιλέξτε «Αποδοχή όλων» εάν συμφωνείτε με τη χρήση όλων των επιπρόσθετων Cookies. Εναλλακτικά επιλέξτε αυτά που επιθυμείτε και πατήστε «Αποδοχή επιλογών».</p>
+    </div>
+    <div class="btns">
+        <button class="btn" id="accept-all">Αποδοχή όλων</button>
+        <button class="btn" id="accept">Αποδοχή επιλογών</button>
+    </div>
+    <button class="x-btn"><i class="fas fa-times"></i></button>
+</div>
+
+<script>
+    var nes = "Τα αναγκαία Cookies είναι απαραίτητα για να λειτουργήσει σωστά  η ιστοσελίδα, επιτρέποντας όλες τις βασικές της λειτουργίες (π.χ. προσθήκη στο καλάθι και ολοκλήρωση αγοράς).";
+    var pref = "Επιτρέπουν στον ιστότοπο να «θυμάται» τις επιλογές του χρήστη. Χρησιμοποιούνται κατά την περιήγηση σας, ώστε να μπορούμε να σας προτείνουμε τα κατάλληλα προϊόντα και το απαραίτητο περιεχόμενο με βάση τις ανάγκες σας.";
+    var stat = "Μας δίνουν τη δυνατότητα να αξιολογούμε την αποτελεσματικότητα των διάφορων λειτουργιών του site μας, ώστε να βελτιώνουμε συνεχώς την εμπειρία που σας προσφέρουμε. Συλλέγουν συγκεντρωτικές, ανώνυμες πληροφορίες που δεν ταυτοποιούν κάποιον επισκέπτη, για παράδειγμα, ποιες σελίδες επισκέπτονται συχνότερα οι χρήστες.";
+    var mark = "Χρησιμοποιούνται για την παροχή περιεχομένου που ταιριάζει περισσότερο στα ενδιαφέροντά σας, καθώς και για την αποστολή στοχευμένης διαφήμισης, με στόχο τον περιορισμό των ανούσιων διαφημιστικών μηνυμάτων.";
+
+     /* New Text */
+    $("#nes").click( function(){
+        $("#info").text(nes); /* Gives new value to the info text */
+    });
+    $("#pref").click( function(){
+        $("#info").text(pref); 
+    });
+    $("#stat").click( function(){
+        $("#info").text(stat); 
+    });
+    $("#mark").click( function(){
+        $("#info").text(mark); 
+    });
+    /* Actions */
+    $(".x-btn").click( function(){
+        $(".bar-design").fadeOut();
+    });
+
+    $("#accept-all").click( function(){
+        var _cookie = new Object();
+        _cookie.pref = "checked";
+        _cookie.stat = "checked";
+        _cookie.mark = "checked";
+
+        $.ajax({
+            type: "POST", //HTTP POST Method 
+            url: "", // Send to backend
+            data: _cookie,
+            success: function(){
+                    $(".bar-design").fadeOut(); // Close the Cookie Bar
+                // console.log(_cookie);
+            }
+        });
+
+        // console.log(_cookie);
+    });  
+
+    $("#accept").click( function(){
+
+        ($("#pref-input").prop('checked') == true) ? _pref = "checked" : _pref = null; // If ($("#pref-input").prop('checked', true)) {_pref = "checked"} else {_pref = null} (Nested if)
+        ($("#stat-input").prop('checked') == true) ? _stat = "checked" : _stat = null;
+        ($("#mark-input").prop('checked') == true) ? _mark = "checked" : _mark = null;
+
+        var _cookie = new Object();
+        _cookie.pref = _pref;
+        _cookie.stat = _stat;
+        _cookie.mark = _mark;
+
+        $.ajax({
+            type: "POST", //HTTP POST Method 
+            url: "", // Send to backend
+            data: _cookie,
+            success: function(){
+                $(".bar-design").fadeOut(); // Close the Cookie Bar
+                // console.log(_cookie);
+            }
+        });
+
+        // console.log(_cookie);
+    });
+
+</script>
